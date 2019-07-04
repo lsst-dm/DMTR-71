@@ -123,13 +123,13 @@ The following personnel are involved in this test activity:
   \item LVV-C81 owner: 
     Fritz Mueller
   \begin{itemize}
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089} tester: 
     \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017} tester: 
     \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090} tester: 
   \end{itemize}
 \end{itemize}
 \item Additional Test Personnel involved: None
@@ -216,7 +216,9 @@ Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/
     Not provided.
 
   \subsubsection{Configuration}
-    \begin{itemize}
+    \textbf{Hardware}\\
+
+\begin{itemize}
 \tightlist
 \item
   50 nodes:
@@ -245,6 +247,28 @@ Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/
 \item
   1 x card iDRAC 7 Enterprise
 \end{itemize}
+
+\textbf{Dataset Information\\
+}\\
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Table & Row Count & .MYD size {[}TB{]} & .MYI size
+{[}TB{]}\tabularnewline
+\midrule
+\endhead
+Object & 5,662,102,056 & 6.86 & 0.15\tabularnewline
+Source & 104,440,271,322 & 49.4 & 5.7\tabularnewline
+ForcedSource & 515,549,769,246 & 16.4 & 12.9\tabularnewline
+\bottomrule
+\end{longtable}
+
+Total MySQL data dir size: 93.6 TB\\[2\baselineskip]DR1 numbers are
+available in Document-16168 under ``Data
+Releases''\\[2\baselineskip]Object, Source and ForcedSource are at
+slightly less than \textasciitilde{}30\% of DR1 level due to some empty
+chunks generated erroneously during the duplication phase. This
+difference is marginal and will not affect test results.
 
 
   \subsubsection{Test Cases in LVV-C81 Test Cycle}
@@ -298,7 +322,9 @@ first to be ``FTSObj'' and subsequently ``FTSSrc'':
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      At end of each pass, a graph indicating scan scaling rate and machine
+resource exhaustion cutoff.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -328,7 +354,8 @@ the query pool of interest to the yearly value per table in section 2.2.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      rueQueries.py script updated with appropriate values for test iteration
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -356,7 +383,8 @@ preferably several, query cycles.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Test script executes producing log file.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -384,7 +412,10 @@ growth curve point for the pool of interest for the test report.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Logs indicate either successful test run, providing another growth point
+for curve, or errors indicating machine resource exhaustion cutoff has
+been reached.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -686,7 +717,8 @@ table in section 2.2.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script updated with appropriate values.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -713,7 +745,8 @@ table in section 2.2.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script runs without error and produces output log.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -741,7 +774,8 @@ query type.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      ​​​​Consult yearly target values per table in section 2.2.
+      Average query times per query type equal or less than corresponding
+yearly target values in section 2.2.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -799,7 +833,8 @@ to the yearly value per table in section 2.2.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script updated with appropriate values.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -817,7 +852,7 @@ to the yearly value per table in section 2.2.
       2 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute the runQueries.py script and let it run for several test cycles.
+      Execute the runQueries.py script and let it run for 24 hours.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -826,7 +861,8 @@ to the yearly value per table in section 2.2.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script runs without error and produces output log.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -845,7 +881,7 @@ to the yearly value per table in section 2.2.
 
       \begin{minipage}[t]{13cm}{\footnotesize
       Examine log file output and compile average query execution times per
-query type, and compare to yearly target values per table in section
+query type; and compare to yearly target values per table in section
 2.2.
 
       \vspace{\dp0}
@@ -855,7 +891,9 @@ query type, and compare to yearly target values per table in section
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Average query times per query type equal or less than corresponding
+yearly target values in section 2.2.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
@@ -958,32 +996,6 @@ https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
       \begin{minipage}[t]{13cm}{\footnotesize
       Test dataset loaded
 
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      3 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
