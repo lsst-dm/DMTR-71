@@ -145,28 +145,31 @@ The following personnel are involved in this test activity:
 
 \begin{longtable}{p{0.12\textwidth}p{0.2\textwidth}p{0.56\textwidth}p{0.12\textwidth}}
 \toprule
+
   \multicolumn{3}{c}{ Test Cycle {\bf LVV-C81: 2018 Qserv Large Scale Testing
  }} \\\hline
+
   {\bf \footnotesize test case} & {\bf \footnotesize status} & {\bf \footnotesize comment} & {\bf \footnotesize issues} \\\toprule
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088} 
+
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089}
     & Not Executed &  &
     \\\hline
-    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085} 
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090}
     & Not Executed &  &
     \\\hline
 
@@ -274,7 +277,414 @@ difference is marginal and will not affect test results.
   \subsubsection{Test Cases in LVV-C81 Test Cycle}
 
 
-    \paragraph{Test Case LVV-T1088 }\mbox{}\\
+    \paragraph{Test Case LVV-T1017 - Qserv Preparation
+ }\mbox{}\\
+
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{\textit{ LVV-T1017 } }
+test case in Jira.
+
+    Before running any of the performance test cases, Qserv must be
+installed on an appropriate test cluster (e.g. the test machine cluster
+at CC-IN2P3). ~To upgrade Qserv software on the cluster in preparation
+for testing, follow directions at
+http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html.\\[2\baselineskip]The
+performance tests will also require an appropriately sized test dataset
+to be synthesized and ingested, per the yearly dataset sizing schedule
+described in section 2.2.1. ~Tools for synthesis of ingest of test
+datasets may be found in the LSST GitHub repot at
+https://github.com/lsst-dm/db\_tests\_kpm*. ~Detailed use and context
+information for the tools is described in
+https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]It has also
+been found that the Qserv shard servers must have engine-independent
+statistics loaded for the larger tables in the test dataset, and be
+properly configured so that the MariaDB query planner can make use of
+those statistics. ~More information on this issue is available at
+https://confluence.lsstcorp.org/pages/viewpage.action?pageId=58950786.
+
+
+    \textbf{ Preconditions}:\\
+    
+
+    Execution status: {\bf Not Executed }
+
+    Final comment:\\
+
+
+    Detailed step results:
+
+    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
+    \hline
+    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
+      1 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Install/upgrade Qserv on a test cluster, following directions at
+http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Qserv installed
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+      2 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Synthesize and load and appropriately sized test dataset per the yearly
+dataset sizing schedule described in section 2.2.1. Tools for synthesis
+of ingest of test datasets may be found in the LSST GitHub repot at
+https://github.com/lsst dm/db\_tests\_kpm*.~ Detailed use and context
+information for the tools is described in
+https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Test dataset loaded
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+    \end{longtable}
+
+
+    \paragraph{Test Case LVV-T1085 - Short Queries Functional Test
+ }\mbox{}\\
+
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{\textit{ LVV-T1085 } }
+test case in Jira.
+
+    The objective of this test is to ensure that the short queries are
+performing as expected and establish a timing baseline benchmark for
+these types of queries.
+
+
+    \textbf{ Preconditions}:\\
+    QSERV has been set-up following procedure at ~LVV-T1017.
+
+
+    Execution status: {\bf Not Executed }
+
+    Final comment:\\
+
+
+    Detailed step results:
+
+    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
+    \hline
+    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
+      1 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute single object selection:\\[2\baselineskip]\textbf{SELECT} *
+\textbf{FROM} Object~\textbf{WHERE} deepSourceId =
+9292041530376264\\[2\baselineskip]and record execution time.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query runs in less than 10 seconds.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+      2 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute spatial area selection from
+Object:\\[2\baselineskip]\textbf{SELECT COUNT(*)} \textbf{FROM} Object
+\textbf{WHERE}~\\
+
+~qserv\_areaspec\_box(316.582327, −6.839078, 316.653938, −6.781822)
+
+and record execution time.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query runs in less than 10 seconds.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+    \end{longtable}
+
+
+    \paragraph{Test Case LVV-T1087 - Full Table Joins Functional Test
+ }\mbox{}\\
+
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{\textit{ LVV-T1087 } }
+test case in Jira.
+
+    The objective of this test is to ensure that the full table join queries
+are performing as expected and establish a timing baseline benchmark for
+these types of queries.
+
+
+    \textbf{ Preconditions}:\\
+    QSERV has been set-up following procedure at ~LVV-T1017.
+
+
+    Execution status: {\bf Not Executed }
+
+    Final comment:\\
+
+
+    Detailed step results:
+
+    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
+    \hline
+    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
+      1 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
+s.objectId, s.id, o.ra, o.decl\\
+\textbf{~ ~ FROM} Object o, Source s WHERE o.deepSourceId=s.objectId\\
+\hspace*{0.333em} ~ \textbf{AND} s . flux\_sinc \textbf{BETWEEN} 0.3
+\textbf{AND} 0.31\\[2\baselineskip]and record execution time.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query expected to run in less than 12 hours.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+      2 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
+f.psfFlux \textbf{FROM} Object o, ForcedSource f\\
+\textbf{~ ~ WHERE} o.deepSourceId=f.deepSourceId\\
+\textbf{~ ~ AND} f . psfFlux \textbf{BETWEEN} 0.13 \textbf{AND}
+0.14\\[2\baselineskip]and record execution time.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query expected to run in less than 12 hours.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+    \end{longtable}
+
+
+    \paragraph{Test Case LVV-T1086 - Full Table Scans Functional Test
+ }\mbox{}\\
+
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{\textit{ LVV-T1086 } }
+test case in Jira.
+
+    The objective of this test is to ensure that the full table scan queries
+are performing as expected and establish a timing baseline benchmark for
+these types of queries.
+
+
+    \textbf{ Preconditions}:\\
+    QSERV has been set-up following procedure at ~LVV-T1017.
+
+
+    Execution status: {\bf Not Executed }
+
+    Final comment:\\
+
+
+    Detailed step results:
+
+    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
+    \hline
+    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
+      1 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute query:\\[2\baselineskip]\textbf{SELECT} ra , decl , u\_psfFlux ,
+g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
+\textbf{WHERE} y\_shapeIxx \textbf{BETWEEN} 20 \textbf{AND}
+20.1\\[3\baselineskip]and record execution time and output size.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query expected to run in less than 1 hour.\\[2\baselineskip]
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+      2 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
+Source \textbf{WHERE} flux\_sinc \textbf{BETWEEN} 1 \textbf{AND}
+1.1\\[2\baselineskip]and record the execution time
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query expected to run in less than 12 hours.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+      3 & Description &
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
+ForcedSource \textbf{WHERE} psfFlux \textbf{BETWEEN} 0.1 \textbf{AND}
+0.2\\[2\baselineskip]and record the execution time
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & Expected Result & 
+
+      \begin{minipage}[t]{13cm}{\footnotesize
+      Query expected to run in less than 12 hours.
+
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
+      \begin{minipage}[t]{13cm}{\footnotesize
+      
+      \vspace{\dp0}
+      } \end{minipage} \\
+      \\ \cdashline{2-3}
+
+
+      & Status          & Not Executed \\ \hline
+
+    \end{longtable}
+
+
+    \paragraph{Test Case LVV-T1088 - Concurrent Scans Scaling Test
+ }\mbox{}\\
 
 Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{\textit{ LVV-T1088 } }
 test case in Jira.
@@ -285,7 +695,7 @@ of simultaneously active full-scan queries, within the limits of machine
 resource exhaustion.
 
 
-    {\bf Preconditions}:\\
+    \textbf{ Preconditions}:\\
     \begin{enumerate}
 \tightlist
 \item
@@ -466,335 +876,8 @@ to the limits of machine resource exhaustion.
     \end{longtable}
 
 
-    \paragraph{Test Case LVV-T1087 }\mbox{}\\
-
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{\textit{ LVV-T1087 } }
-test case in Jira.
-
-    The objective of this test is to ensure that the full table join queries
-are performing as expected and establish a timing baseline benchmark for
-these types of queries.
-
-
-    {\bf Preconditions}:\\
-    QSERV has been set-up following procedure at ~LVV-T1017.
-
-
-    Execution status: {\bf Not Executed }
-
-    Final comment:\\
-
-
-    Detailed step results:
-
-    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
-    \hline
-    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
-      1 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
-s.objectId, s.id, o.ra, o.decl\\
-\textbf{~ ~ FROM} Object o, Source s WHERE o.deepSourceId=s.objectId\\
-\hspace*{0.333em} ~ \textbf{AND} s . flux\_sinc \textbf{BETWEEN} 0.3
-\textbf{AND} 0.31\\[2\baselineskip]and record execution time.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 12 hours.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      2 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
-f.psfFlux \textbf{FROM} Object o, ForcedSource f\\
-\textbf{~ ~ WHERE} o.deepSourceId=f.deepSourceId\\
-\textbf{~ ~ AND} f . psfFlux \textbf{BETWEEN} 0.13 \textbf{AND}
-0.14\\[2\baselineskip]and record execution time.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 12 hours.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-    \end{longtable}
-
-
-    \paragraph{Test Case LVV-T1086 }\mbox{}\\
-
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{\textit{ LVV-T1086 } }
-test case in Jira.
-
-    The objective of this test is to ensure that the full table scan queries
-are performing as expected and establish a timing baseline benchmark for
-these types of queries.
-
-
-    {\bf Preconditions}:\\
-    QSERV has been set-up following procedure at ~LVV-T1017.
-
-
-    Execution status: {\bf Not Executed }
-
-    Final comment:\\
-
-
-    Detailed step results:
-
-    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
-    \hline
-    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
-      1 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} ra , decl , u\_psfFlux ,
-g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
-\textbf{WHERE} y\_shapeIxx \textbf{BETWEEN} 20 \textbf{AND}
-20.1\\[3\baselineskip]and record execution time and output size.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 1 hour.\\[2\baselineskip]
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      2 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
-Source \textbf{WHERE} flux\_sinc \textbf{BETWEEN} 1 \textbf{AND}
-1.1\\[2\baselineskip]and record the execution time
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 12 hours.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      3 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
-ForcedSource \textbf{WHERE} psfFlux \textbf{BETWEEN} 0.1 \textbf{AND}
-0.2\\[2\baselineskip]and record the execution time
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 12 hours.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-    \end{longtable}
-
-
-    \paragraph{Test Case LVV-T1090 }\mbox{}\\
-
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{\textit{ LVV-T1090 } }
-test case in Jira.
-
-    This test will check that Qserv is able to meet average query completion
-time targets per query class under a higher than average load of
-simultaneous high and low volume queries while running against an
-appropriately scaled test catalog.
-
-
-    {\bf Preconditions}:\\
-    QSERV has been set-up following procedure at ~LVV-T1017
-
-
-    Execution status: {\bf Not Executed }
-
-    Final comment:\\
-
-
-    Detailed step results:
-
-    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
-    \hline
-    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
-      1 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Inspect and modify the CONCURRENCY and TARGET\_RATES dictionaries in the
-runQueries.py script. ~Set CONCURRENCY and TARGET\_RATES for LV query
-pool to 2020 value per table in section 2.2. ~Set CONCURRENCY and
-TARGET\_RATES for all other query pools to values in next column over
-from current year column (or to 2020 values +10\% if year is 2020) per
-table in section 2.2.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Script updated with appropriate values.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      2 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute the runQueries.py script and let it run for 24 hrs.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Script runs without error and produces output log.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      3 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Examine log file output and compile average query execution times per
-query type.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Average query times per query type equal or less than corresponding
-yearly target values in section 2.2.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-    \end{longtable}
-
-
-    \paragraph{Test Case LVV-T1089 }\mbox{}\\
+    \paragraph{Test Case LVV-T1089 - Load Test
+ }\mbox{}\\
 
 Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{\textit{ LVV-T1089 } }
 test case in Jira.
@@ -805,7 +888,7 @@ high and low volume queries while running against an appropriately
 scaled test catalog.
 
 
-    {\bf Preconditions}:\\
+    \textbf{ Preconditions}:\\
     QSERV has been set-up following procedure at ~LVV-T1017
 
 
@@ -911,32 +994,21 @@ yearly target values in section 2.2.
     \end{longtable}
 
 
-    \paragraph{Test Case LVV-T1017 }\mbox{}\\
+    \paragraph{Test Case LVV-T1090 - Heavy Load Test
+ }\mbox{}\\
 
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{\textit{ LVV-T1017 } }
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{\textit{ LVV-T1090 } }
 test case in Jira.
 
-    Before running any of the performance test cases, Qserv must be
-installed on an appropriate test cluster (e.g. the test machine cluster
-at CC-IN2P3). ~To upgrade Qserv software on the cluster in preparation
-for testing, follow directions at
-http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html.\\[2\baselineskip]The
-performance tests will also require an appropriately sized test dataset
-to be synthesized and ingested, per the yearly dataset sizing schedule
-described in section 2.2.1. ~Tools for synthesis of ingest of test
-datasets may be found in the LSST GitHub repot at
-https://github.com/lsst-dm/db\_tests\_kpm*. ~Detailed use and context
-information for the tools is described in
-https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]It has also
-been found that the Qserv shard servers must have engine-independent
-statistics loaded for the larger tables in the test dataset, and be
-properly configured so that the MariaDB query planner can make use of
-those statistics. ~More information on this issue is available at
-https://confluence.lsstcorp.org/pages/viewpage.action?pageId=58950786.
+    This test will check that Qserv is able to meet average query completion
+time targets per query class under a higher than average load of
+simultaneous high and low volume queries while running against an
+appropriately scaled test catalog.
 
 
-    {\bf Preconditions}:\\
-    
+    \textbf{ Preconditions}:\\
+    QSERV has been set-up following procedure at ~LVV-T1017
+
 
     Execution status: {\bf Not Executed }
 
@@ -951,8 +1023,12 @@ https://confluence.lsstcorp.org/pages/viewpage.action?pageId=58950786.
       1 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Install/upgrade Qserv on a test cluster, following directions at
-http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html
+      Inspect and modify the CONCURRENCY and TARGET\_RATES dictionaries in the
+runQueries.py script. ~Set CONCURRENCY and TARGET\_RATES for LV query
+pool to 2020 value per table in section 2.2. ~Set CONCURRENCY and
+TARGET\_RATES for all other query pools to values in next column over
+from current year column (or to 2020 values +10\% if year is 2020) per
+table in section 2.2.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -961,7 +1037,7 @@ http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.h
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Qserv installed
+      Script updated with appropriate values.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -980,12 +1056,7 @@ http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.h
       2 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Synthesize and load and appropriately sized test dataset per the yearly
-dataset sizing schedule described in section 2.2.1. Tools for synthesis
-of ingest of test datasets may be found in the LSST GitHub repot at
-https://github.com/lsst dm/db\_tests\_kpm*.~ Detailed use and context
-information for the tools is described in
-https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
+      Execute the runQueries.py script and let it run for 24 hrs.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -994,7 +1065,7 @@ https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Test dataset loaded
+      Script runs without error and produces output log.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -1010,39 +1081,11 @@ https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
 
       & Status          & Not Executed \\ \hline
 
-    \end{longtable}
-
-
-    \paragraph{Test Case LVV-T1085 }\mbox{}\\
-
-Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{\textit{ LVV-T1085 } }
-test case in Jira.
-
-    The objective of this test is to ensure that the short queries are
-performing as expected and establish a timing baseline benchmark for
-these types of queries.
-
-
-    {\bf Preconditions}:\\
-    QSERV has been set-up following procedure at ~LVV-T1017.
-
-
-    Execution status: {\bf Not Executed }
-
-    Final comment:\\
-
-
-    Detailed step results:
-
-    \begin{longtable}{p{1cm}p{2cm}p{13cm}}
-    \hline
-    {Step} & \multicolumn{2}{c}{Description, Results and Status}\\ \hline
-      1 & Description &
+      3 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute single object selection:\\[2\baselineskip]\textbf{SELECT} *
-\textbf{FROM} Object~\textbf{WHERE} deepSourceId =
-9292041530376264\\[2\baselineskip]and record execution time.
+      Examine log file output and compile average query execution times per
+query type.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -1051,41 +1094,8 @@ these types of queries.
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Query runs in less than 10 seconds.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
-      \begin{minipage}[t]{13cm}{\footnotesize
-      
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-
-      & Status          & Not Executed \\ \hline
-
-      2 & Description &
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Execute spatial area selection from
-Object:\\[2\baselineskip]\textbf{SELECT COUNT(*)} \textbf{FROM} Object
-\textbf{WHERE}~\\
-
-~qserv\_areaspec\_box(316.582327, −6.839078, 316.653938, −6.781822)
-
-and record execution time.
-
-      \vspace{\dp0}
-      } \end{minipage} \\
-      \\ \cdashline{2-3}
-
-      & Expected Result & 
-
-      \begin{minipage}[t]{13cm}{\footnotesize
-      Query runs in less than 10 seconds.
+      Average query times per query type equal or less than corresponding
+yearly target values in section 2.2.
 
       \vspace{\dp0}
       } \end{minipage} \\
