@@ -81,7 +81,7 @@ Section \ref{sect:personnel} describes the necessary roles and lists the individ
 Section \ref{sect:overview} provides a summary of the test results, including an overview in Table \ref{table:summary}, an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan LVV-P46 in Jira is Draft.
+The current status of test plan LVV-P46 in Jira is Approved.
 
 \subsection{References}
 \label{sect:references}
@@ -123,13 +123,13 @@ The following personnel are involved in this test activity:
   \item LVV-C81 owner: 
     Fritz Mueller
   \begin{itemize}
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089} tester: 
-    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090} tester: 
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089} tester: Fritz Mueller
+    \item Test case \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090} tester: Fritz Mueller
   \end{itemize}
 \end{itemize}
 \item Additional Test Personnel involved: None
@@ -152,25 +152,38 @@ The following personnel are involved in this test activity:
   {\bf \footnotesize test case} & {\bf \footnotesize status} & {\bf \footnotesize comment} & {\bf \footnotesize issues} \\\toprule
 
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1017}{LVV-T1017}
-    & Not Executed &  &
+    & Pass & Qserv docker containers installed without issue.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1085}{LVV-T1085}
-    & Not Executed &  &
+    & Pass & Short queries executed correctly in less than required times.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1087}{LVV-T1087}
-    & Not Executed &  &
+    & Pass & Queries executed correctly in less than required times.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1086}{LVV-T1086}
-    & Not Executed &  &
+    & Pass & Queries executed correctly in less than the required times.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1088}{LVV-T1088}
-    & Not Executed &  &
+    & Pass & Test results indicate the desired less-than-linear scaling rate for
+scans of each type, within limits of machine resource exhaustion.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089}
-    & Not Executed &  &
+    & Conditional Pass & Load test excluded Object x (Source, ForcedSource) joins; see notes in
+``Overall Assessment'' section.
+ &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090}
-    & Not Executed &  &
+    & Conditional Pass & Heavy Load test excluded Object x (Source, ForcedSource) joins and was
+limited by maximum shared-scan load that could be accommodated by the
+current test tooling; see notes in ``Overall Assessment'' section.
+~Effectively, this run ended up being a 100LV + 20HV test; similar to
+LVV-T1089 only with more LV queries.
+ &
     \\\hline
 
 \caption{Test Results Summary}
@@ -180,12 +193,52 @@ The following personnel are involved in this test activity:
 \subsection{Overall Assessment}
 \label{sect:overallassessment}
 
-Not yet available.
+A performance problem was observed with execution of Object x Source and
+Object x ForcedSource joins during this testing. ~While these joins
+performed per expectation in isolation, and full-table-scans performed
+per expectation in isolation, the combination of both under high loads
+resulted in significantly degraded performance.\\[2\baselineskip]The
+development team spent a good deal of time investigating this
+regression. ~It was found by running against older codebases that the
+regression was independent of changes to either the Qserv codebase or
+the underlying MariaDB database engine. ~Indeed, when historic code and
+datasets were run on the same hardware systems which had been used for
+performance testing previously, at the same scale as had been run
+previously, this same join+scans performance degradation was
+evident.\\[2\baselineskip]The development team has concluded that
+changes to the operating environment (OS kernel, firmware) must be
+implicated, since these are the only remaining variables which could not
+be rolled back in the efforts to duplicate previous performance
+measurements. ~Investigations continue, and the issue is expected to be
+resolved before the next round of large scale
+testing.\\[2\baselineskip]Additionally, the heavy load test taxed the
+existing test tooling and single-master configuration their limits, due
+to increased result set sized, overheads from 50\% more scans, limits on
+simultaneous database connections from the test script, etc. ~For the
+next round of testing, a more robust test harness will need to be
+developed, and multiple head nodes will be required to accommodate the
+increased result-handling loads.\\[2\baselineskip]In the meantime,
+concurrent joins were disabled during the load tests, and the existing
+tooling was run to as high a load as possible for the heavy load test,
+in order to gather/document as much meaningful performance assessment as
+possible in the current operating environment. ~Since indications are
+that the Qserv codebase itself is not implicated in the join performance
+regression, and Qserv otherwise appears to be healthy and performing per
+design, the load tests have been marked with a ``conditional pass''.
+
 
 \subsection{Recommended Improvements}
 \label{sect:recommendations}
 
-Not yet available.
+\begin{itemize}
+\tightlist
+\item
+  Test tooling to be revamped to support higher concurrency in database
+  connections and to gracefully handle larger cumulative result sizes.
+\item
+  Subsequent test regimes will require more than a single master node.
+\end{itemize}
+
 
 \newpage
 \section{Detailed Test Results}
@@ -199,7 +252,7 @@ Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/
 
   2018 Qserv Large Scale Testing
 \\
-  Status: Not Executed
+  Status: Done
 
   This test cycle establishes that:\\
 
@@ -307,9 +360,10 @@ https://confluence.lsstcorp.org/pages/viewpage.action?pageId=58950786.
     \textbf{ Preconditions}:\\
     
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Pass }
 
-    Final comment:\\
+    Final comment:\\Qserv docker containers installed without issue.
+
 
 
     Detailed step results:
@@ -338,13 +392,15 @@ http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.h
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Qserv installed and testing performed at CC-IN2P3, on nodes ccqserv100 -
+ccqserv124.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -371,13 +427,14 @@ https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Test dataset loaded as database LSST30.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
     \end{longtable}
 
@@ -397,9 +454,10 @@ these types of queries.
     QSERV has been set-up following procedure at ~LVV-T1017.
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Pass }
 
-    Final comment:\\
+    Final comment:\\Short queries executed correctly in less than required times.
+
 
 
     Detailed step results:
@@ -429,13 +487,14 @@ these types of queries.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Execution time 0.23 sec.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -463,13 +522,14 @@ and record execution time.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Execution time 3.34 sec.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
     \end{longtable}
 
@@ -489,9 +549,10 @@ these types of queries.
     QSERV has been set-up following procedure at ~LVV-T1017.
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Pass }
 
-    Final comment:\\
+    Final comment:\\Queries executed correctly in less than required times.
+
 
 
     Detailed step results:
@@ -523,13 +584,14 @@ s.objectId, s.id, o.ra, o.decl\\
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query executed in \textasciitilde{}112 min.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -555,13 +617,14 @@ f.psfFlux \textbf{FROM} Object o, ForcedSource f\\
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query executed in \textasciitilde{}5 hr.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
     \end{longtable}
 
@@ -581,9 +644,10 @@ these types of queries.
     QSERV has been set-up following procedure at ~LVV-T1017.
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Pass }
 
-    Final comment:\\
+    Final comment:\\Queries executed correctly in less than the required times.
+
 
 
     Detailed step results:
@@ -614,13 +678,14 @@ g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query executed in \textasciitilde{}20 min, 83MB output.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -644,13 +709,14 @@ Source \textbf{WHERE} flux\_sinc \textbf{BETWEEN} 1 \textbf{AND}
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query executed in \textasciitilde{}104 min.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       3 & Description &
 
@@ -674,13 +740,14 @@ ForcedSource \textbf{WHERE} psfFlux \textbf{BETWEEN} 0.1 \textbf{AND}
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query executed in \textasciitilde{}48 min.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
     \end{longtable}
 
@@ -711,9 +778,11 @@ resource exhaustion.
 \end{enumerate}
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Pass }
 
-    Final comment:\\
+    Final comment:\\Test results indicate the desired less-than-linear scaling rate for
+scans of each type, within limits of machine resource exhaustion.
+
 
 
     Detailed step results:
@@ -743,13 +812,40 @@ resource exhaustion cutoff.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Object\\
+
+\begin{itemize}
+\tightlist
+\item
+  2 scans: \textasciitilde{}20 min
+\item
+  5 scans: \textasciitilde{}20 min
+\item
+  10 scans: \textasciitilde{}22 min
+\item
+  20 scans: \textasciitilde{}25 min
+\item
+  40 scans: \textasciitilde{}72 min (machine resource exhaustion)
+\end{itemize}
+
+ForcedSource:
+
+\begin{itemize}
+\tightlist
+\item
+  2 scans: \textasciitilde{} 51 min~
+\item
+  4 scans: \textasciitilde{} 61 min
+\item
+  10 scans: \textasciitilde{}270 min (machine resource exhaustion)
+\end{itemize}
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -774,13 +870,14 @@ the query pool of interest to the yearly value per table in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Appropriate edits made.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       3 & Description &
 
@@ -803,13 +900,14 @@ preferably several, query cycles.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script executed per design.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       4 & Description &
 
@@ -834,13 +932,14 @@ been reached.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script executions and log contents as expected.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       5 & Description &
 
@@ -867,13 +966,15 @@ to the limits of machine resource exhaustion.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Test indicated less-than-linear scaling rate for scans of each type,
+within limits of machine resource exhaustion.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
     \end{longtable}
 
@@ -894,9 +995,11 @@ scaled test catalog.
     QSERV has been set-up following procedure at ~LVV-T1017
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Conditional Pass }
 
-    Final comment:\\
+    Final comment:\\Load test excluded Object x (Source, ForcedSource) joins; see notes in
+``Overall Assessment'' section.
+
 
 
     Detailed step results:
@@ -926,13 +1029,14 @@ to the yearly value per table in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script updated without difficulty.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -954,13 +1058,14 @@ to the yearly value per table in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script ran and log files were generated per expectation.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       3 & Description &
 
@@ -985,13 +1090,54 @@ yearly target values in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query through-put over 24 hours:\\
+
+\begin{itemize}
+\tightlist
+\item
+  625,245 Low Volume queries finished --- Baseline: 604,800
+\item
+  201 Object scans --- Baseline: 192
+\item
+  4 Source scans --- Baseline: 4
+\item
+  4 ForcedSource scans --- Baseline: 4
+\item
+  0 Object-Source joins (see comment section) --- Baseline: 8~
+\item
+  0 Object-ForcedSource joins (see comment section) --- Baseline: 4~
+\item
+  53 NearNeighbor queries --- Baseline: 48
+\end{itemize}
+
+Average query times:
+
+\begin{itemize}
+\tightlist
+\item
+  Low Volume queries 2.92 sec/query --- Baseline: under 10 sec.
+\item
+  Object scans 44.5 min/query --- Baseline: under 1 hour
+\item
+  Source scans 5.4 hr/query --- Baseline: under 12 hours
+\item
+  ForcedSource scans 5.4 hr/query --- Baseline: under 12 hours
+\item
+  Object-Source joins (not measured; see comment section) --- Baseline:
+  under 12 hours
+\item
+  Object-ForcedSource joins (not measured; see comment section) ---
+  Baseline: under 12 hours
+\item
+  NearNeighbor queries 38.9 min/query --- Baseline: under 12 hours
+\end{itemize}
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Conditional Pass \\ \hline
 
     \end{longtable}
 
@@ -1012,9 +1158,14 @@ appropriately scaled test catalog.
     QSERV has been set-up following procedure at ~LVV-T1017
 
 
-    Execution status: {\bf Not Executed }
+    Execution status: {\bf Conditional Pass }
 
-    Final comment:\\
+    Final comment:\\Heavy Load test excluded Object x (Source, ForcedSource) joins and was
+limited by maximum shared-scan load that could be accommodated by the
+current test tooling; see notes in ``Overall Assessment'' section.
+~Effectively, this run ended up being a 100LV + 20HV test; similar to
+LVV-T1089 only with more LV queries.
+
 
 
     Detailed step results:
@@ -1047,13 +1198,14 @@ table in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script updated without difficulty.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Pass \\ \hline
 
       2 & Description &
 
@@ -1075,13 +1227,16 @@ table in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Script ran, but did not finish expected number of scans due to
+proxy/thread crashes. ~This appears to be a limitation of the test
+script and the mysqlproxy front end.
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Conditional Pass \\ \hline
 
       3 & Description &
 
@@ -1105,13 +1260,54 @@ yearly target values in section 2.2.
 
       & \begin{minipage}[t]{2cm}{Actual\\ Result}\end{minipage}   & 
       \begin{minipage}[t]{13cm}{\footnotesize
-      
+      Query through-put over 24 hours:\\
+
+\begin{itemize}
+\tightlist
+\item
+  779,308 Low Volume queries ~--- Baseline: 691,200
+\item
+  188 Object scans --- Baseline: 288
+\item
+  4 Source scans --- Baseline: 6
+\item
+  4 ForcedSource scans --- Baseline: 6
+\item
+  0 Object-Source joins ~--- Baseline: 12~
+\item
+  0 Object-ForcedSource joins ~--- Baseline: 6
+\item
+  53 NearNeighbor queries ~--- Baseline: 72
+\end{itemize}
+
+Average query times:\\
+
+\begin{itemize}
+\tightlist
+\item
+  Low Volume queries 3.67 sec/query --- Baseline: under 10 sec
+\item
+  Object scans 44 min/query ~--- Baseline: under 1 hour
+\item
+  Source scans 4.8 hr/query --- Baseline: under 12 hours
+\item
+  ForcedSource scans 4.8 hr/query --- Baseline: under 12 hours
+\item
+  Object-Source joins (not measured; see comment section) ~--- Baseline:
+  under 12 hours
+\item
+  Object-ForcedSource joins (not measured; see comment section) ---
+  Baseline: under 12 hours
+\item
+  NearNeighbor queries 39 min/query --- Baseline: under 12 hours
+\end{itemize}
+
       \vspace{\dp0}
       } \end{minipage} \\
       \\ \cdashline{2-3}
 
 
-      & Status          & Not Executed \\ \hline
+      & Status          & Conditional Pass \\ \hline
 
     \end{longtable}
 
