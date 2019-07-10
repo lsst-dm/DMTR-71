@@ -53,10 +53,12 @@ Qserv is a SQL-oriented MPP distributed database system built by LSST
 for the purpose of hosting LSST catalog data products. ~Qserv is tested
 yearly at large scale, on test datasets of ever-increasing size, to
 ensure that development remains on a path toward delivering a system
-that functions effectively at LSST release scales.\\[2\baselineskip]
+that functions effectively at LSST release scales.\\
+~\\
 
+\hypertarget{applicable-documents}{%
 \subsection{\texorpdfstring{Applicable Documents\\
-}{Applicable Documents }}\label{applicable-documents}
+}{Applicable Documents }}\label{applicable-documents}}
 
 \citeds{LDM-555}: LSST Data Management Database Requirements\\
 \citeds{LDM-135}: LSST Data Management Database Design\\
@@ -96,16 +98,19 @@ The current status of test plan LVV-P46 in Jira is Approved.
 
 \subsection{Verification Environment}
 \label{sect:hwconf}
-  Qserv testing at scale requires a dedicated machine
-cluster:\\[2\baselineskip]- 25 to 50 ``worker'' nodes, each with ~on
-order 16 GB memory and on order 10 TB locally attached storage\\
-- 1 to 2 ``czar'' nodes, minimally provisioned as above, but preferably
-provisioned with more RAM and several TB of fast SSD
-storage\\[2\baselineskip]Suitable test clusters exist and have been used
-at both NCSA and CC-IN2P3. ~Some testing at scale has also been
-conducted with dynamically provisioned clusters on the Google cloud
-infrastructure.\\[2\baselineskip]A test dataset of appropriate size (per
-schedule in \citeds{LDM-552}) is also required.
+  Qserv testing at scale requires a dedicated machine cluster:\\
+~\\
+- 25 to 50 "worker" nodes, each with ~on order 16 GB memory and on order
+10 TB locally attached storage\\
+- 1 to 2 "czar" nodes, minimally provisioned as above, but preferably
+provisioned with more RAM and several TB of fast SSD storage\\
+~\\
+Suitable test clusters exist and have been used at both NCSA and
+CC-IN2P3. ~Some testing at scale has also been conducted with
+dynamically provisioned clusters on the Google cloud infrastructure.\\
+~\\
+A test dataset of appropriate size (per schedule in \citeds{LDM-552}) is also
+required.
 
 
 
@@ -174,13 +179,13 @@ scans of each type, within limits of machine resource exhaustion.
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1089}{LVV-T1089}
     & Conditional Pass & Load test excluded Object x (Source, ForcedSource) joins; see notes in
-``Overall Assessment'' section.
+"Overall Assessment" section.
  &
     \\\hline
     \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1090}{LVV-T1090}
     & Conditional Pass & Heavy Load test excluded Object x (Source, ForcedSource) joins and was
 limited by maximum shared-scan load that could be accommodated by the
-current test tooling; see notes in ``Overall Assessment'' section.
+current test tooling; see notes in "Overall Assessment" section.
  &
     \\\hline
 
@@ -195,34 +200,39 @@ A performance problem was observed with execution of Object x Source and
 Object x ForcedSource joins during this testing. ~While these joins
 performed per expectation in isolation, and full-table-scans performed
 per expectation in isolation, the combination of both under high loads
-resulted in significantly degraded performance.\\[2\baselineskip]The
-development team spent a good deal of time investigating this
+resulted in significantly degraded performance.\\
+~\\
+The development team spent a good deal of time investigating this
 regression. ~It was found by running against older codebases that the
 regression was independent of changes to either the Qserv codebase or
 the underlying MariaDB database engine. ~Indeed, when historic code and
 datasets were run on the same hardware systems which had been used for
 performance testing previously, at the same scale as had been run
-previously, this same join+scans performance degradation was
-evident.\\[2\baselineskip]The development team has concluded that
-changes to the operating environment (OS kernel, firmware) must be
-implicated, since these are the only remaining variables which could not
-be rolled back in the efforts to duplicate previous performance
-measurements. ~Investigations continue, and the issue is expected to be
-resolved before the next round of large scale
-testing.\\[2\baselineskip]Additionally, the heavy load test taxed the
-existing test tooling and single-master configuration their limits, due
-to increased result set sized, overheads from 50\% more scans, limits on
-simultaneous database connections from the test script, etc. ~For the
-next round of testing, a more robust test harness will need to be
-developed, and multiple head nodes will be required to accommodate the
-increased result-handling loads.\\[2\baselineskip]In the meantime,
-concurrent joins were disabled during the load tests, and the existing
-tooling was run to as high a load as possible for the heavy load test,
-in order to gather/document as much meaningful performance assessment as
-possible in the current operating environment. ~Since indications are
-that the Qserv codebase itself is not implicated in the join performance
-regression, and Qserv otherwise appears to be healthy and performing per
-design, the load tests have been marked with a ``conditional pass''.
+previously, this same join+scans performance degradation was evident.\\
+~\\
+The development team has concluded that changes to the operating
+environment (OS kernel, firmware) must be implicated, since these are
+the only remaining variables which could not be rolled back in the
+efforts to duplicate previous performance measurements. ~Investigations
+continue, and the issue is expected to be resolved before the next round
+of large scale testing.\\
+~\\
+Additionally, the heavy load test taxed the existing test tooling and
+single-master configuration their limits, due to increased result set
+sized, overheads from 50\% more scans, limits on simultaneous database
+connections from the test script, etc. ~For the next round of testing, a
+more robust test harness will need to be developed, and multiple head
+nodes will be required to accommodate the increased result-handling
+loads.\\
+~\\
+In the meantime, concurrent joins were disabled during the load tests,
+and the existing tooling was run to as high a load as possible for the
+heavy load test, in order to gather/document as much meaningful
+performance assessment as possible in the current operating environment.
+~Since indications are that the Qserv codebase itself is not implicated
+in the join performance regression, and Qserv otherwise appears to be
+healthy and performing per design, the load tests have been marked with
+a "conditional pass".
 
 
 \subsection{Recommended Improvements}
@@ -305,7 +315,7 @@ qserv/qserv:travis\_DM-13961)
 \end{itemize}
 
 \textbf{Dataset Information\\
-}\\
+}~\\
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
@@ -319,12 +329,14 @@ ForcedSource & 515,549,769,246 & 16.4 & 12.9\tabularnewline
 \bottomrule
 \end{longtable}
 
-Total MySQL data dir size: 93.6 TB\\[2\baselineskip]DR1 numbers are
-available in Document-16168 under ``Data
-Releases''\\[2\baselineskip]Object, Source and ForcedSource are at
-slightly less than \textasciitilde{}30\% of DR1 level due to some empty
-chunks generated erroneously during the duplication phase. This
-difference is marginal and will not affect test results.
+Total MySQL data dir size: 93.6 TB\\
+~\\
+DR1 numbers are available in Document-16168 under ``Data Releases''\\
+~\\
+Object, Source and ForcedSource are at slightly less than
+\textasciitilde{}30\% of DR1 level due to some empty chunks generated
+erroneously during the duplication phase. This difference is marginal
+and will not affect test results.
 
 
   \subsubsection{Test Cases in LVV-C81 Test Cycle}
@@ -340,18 +352,21 @@ test case in Jira.
 installed on an appropriate test cluster (e.g. the test machine cluster
 at CC-IN2P3). ~To upgrade Qserv software on the cluster in preparation
 for testing, follow directions at
-http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html.\\[2\baselineskip]The
-performance tests will also require an appropriately sized test dataset
-to be synthesized and ingested, per the yearly dataset sizing schedule
-described in \citeds{LDM-552}, section 2.2.1. ~Tools for synthesis of ingest of
-test datasets may be found in the LSST GitHub repot at
+http://www.slac.stanford.edu/exp/lsst/qserv/2015\_10/HOW-TO/cluster-deployment.html.\\
+~\\
+The performance tests will also require an appropriately sized test
+dataset to be synthesized and ingested, per the yearly dataset sizing
+schedule described in \citeds{LDM-552}, section 2.2.1. ~Tools for synthesis of
+ingest of test datasets may be found in the LSST GitHub repot at
 https://github.com/lsst-dm/db\_tests\_kpm*. ~Detailed use and context
 information for the tools is described in
-https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]It has also
-been found that the Qserv shard servers must have engine-independent
-statistics loaded for the larger tables in the test dataset, and be
-properly configured so that the MariaDB query planner can make use of
-those statistics. ~More information on this issue is available at
+https://jira.lsstcorp.org/browse/DM-8405.\\
+~\\
+It has also been found that the Qserv shard servers must have
+engine-independent statistics loaded for the larger tables in the test
+dataset, and be properly configured so that the MariaDB query planner
+can make use of those statistics. ~More information on this issue is
+available at
 https://confluence.lsstcorp.org/pages/viewpage.action?pageId=58950786.
 
 
@@ -408,7 +423,8 @@ dataset sizing schedule described in LDM-552, section 2.2.1. Tools for
 synthesis of ingest of test datasets may be found in the LSST GitHub
 repot at https://github.com/lsst dm/db\_tests\_kpm*. ~Detailed use and
 context information for the tools is described in
-https://jira.lsstcorp.org/browse/DM-8405.\\[2\baselineskip]
+https://jira.lsstcorp.org/browse/DM-8405.\\
+~\\
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -466,9 +482,12 @@ these types of queries.
       1 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute single object selection:\\[2\baselineskip]\textbf{SELECT} *
-\textbf{FROM} Object~\textbf{WHERE} deepSourceId =
-9292041530376264\\[2\baselineskip]and record execution time.
+      Execute single object selection:\\
+~\\
+\textbf{SELECT} * \textbf{FROM} Object~\textbf{WHERE} deepSourceId =
+9292041530376264\\
+~\\
+and record execution time.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -497,9 +516,9 @@ these types of queries.
       2 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute spatial area selection from
-Object:\\[2\baselineskip]\textbf{SELECT COUNT(*)} \textbf{FROM} Object
-\textbf{WHERE}~\\
+      Execute spatial area selection from Object:\\
+~\\
+\textbf{SELECT COUNT(*)} \textbf{FROM} Object \textbf{WHERE}~\\
 
 ~qserv\_areaspec\_box(316.582327, −6.839078, 316.653938, −6.781822)
 
@@ -561,11 +580,14 @@ these types of queries.
       1 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
-s.objectId, s.id, o.ra, o.decl\\
+      Execute query:\\
+~\\
+\textbf{SELECT} o.deepSourceId, s.objectId, s.id, o.ra, o.decl\\
 \textbf{~ ~ FROM} Object o, Source s WHERE o.deepSourceId=s.objectId\\
 \hspace*{0.333em} ~ \textbf{AND} s . flux\_sinc \textbf{BETWEEN} 0.3
-\textbf{AND} 0.31\\[2\baselineskip]and record execution time.
+\textbf{AND} 0.31\\
+~\\
+and record execution time.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -594,11 +616,14 @@ s.objectId, s.id, o.ra, o.decl\\
       2 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} o.deepSourceId,
-f.psfFlux \textbf{FROM} Object o, ForcedSource f\\
+      Execute query:\\
+~\\
+\textbf{SELECT} o.deepSourceId, f.psfFlux \textbf{FROM} Object o,
+ForcedSource f\\
 \textbf{~ ~ WHERE} o.deepSourceId=f.deepSourceId\\
-\textbf{~ ~ AND} f . psfFlux \textbf{BETWEEN} 0.13 \textbf{AND}
-0.14\\[2\baselineskip]and record execution time.
+\textbf{~ ~ AND} f . psfFlux \textbf{BETWEEN} 0.13 \textbf{AND} 0.14\\
+~\\
+and record execution time.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -656,10 +681,14 @@ these types of queries.
       1 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} ra , decl , u\_psfFlux ,
-g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
-\textbf{WHERE} y\_shapeIxx \textbf{BETWEEN} 20 \textbf{AND}
-20.1\\[3\baselineskip]and record execution time and output size.
+      Execute query:\\
+~\\
+\textbf{SELECT} ra , decl , u\_psfFlux , g\_psfFlux , r\_psfFlux
+\textbf{FROM} Object\\
+\textbf{WHERE} y\_shapeIxx \textbf{BETWEEN} 20 \textbf{AND} 20.1\\
+~\\
+~\\
+and record execution time and output size.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -668,7 +697,8 @@ g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
       & Expected Result & 
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Query expected to run in less than 1 hour.\\[2\baselineskip]
+      Query expected to run in less than 1 hour.\\
+~\\
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -688,9 +718,12 @@ g\_psfFlux , r\_psfFlux \textbf{FROM} Object\\
       2 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
-Source \textbf{WHERE} flux\_sinc \textbf{BETWEEN} 1 \textbf{AND}
-1.1\\[2\baselineskip]and record the execution time
+      Execute query:\\
+~\\
+\textbf{SELECT} COUNT(*) \textbf{FROM} Source \textbf{WHERE} flux\_sinc
+\textbf{BETWEEN} 1 \textbf{AND} 1.1\\
+~\\
+and record the execution time
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -719,9 +752,12 @@ Source \textbf{WHERE} flux\_sinc \textbf{BETWEEN} 1 \textbf{AND}
       3 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Execute query:\\[2\baselineskip]\textbf{SELECT} COUNT(*) \textbf{FROM}
-ForcedSource \textbf{WHERE} psfFlux \textbf{BETWEEN} 0.1 \textbf{AND}
-0.2\\[2\baselineskip]and record the execution time
+      Execute query:\\
+~\\
+\textbf{SELECT} COUNT(*) \textbf{FROM} ForcedSource \textbf{WHERE}
+psfFlux \textbf{BETWEEN} 0.1 \textbf{AND} 0.2\\
+~\\
+and record the execution time
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -791,8 +827,8 @@ scans of each type, within limits of machine resource exhaustion.
       1 & Description &
 
       \begin{minipage}[t]{13cm}{\footnotesize
-      Repeat steps 2 through 5 below, where ``pool of interest'' is taken
-first to be ``FTSObj'' and subsequently ``FTSSrc'':
+      Repeat steps 2 through 5 below, where "pool of interest" is taken first
+to be "FTSObj" and subsequently "FTSSrc":
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -997,7 +1033,7 @@ scaled test catalog.
     Execution status: {\bf Conditional Pass }
 
     Final comment:\\Load test excluded Object x (Source, ForcedSource) joins; see notes in
-``Overall Assessment'' section.
+"Overall Assessment" section.
 
 
 
@@ -1081,7 +1117,7 @@ section 2.2.1.
 
       \begin{minipage}[t]{13cm}{\footnotesize
       Average query times per query type equal or less than corresponding
-yearly target values in section 2.2.
+yearly target values in LDM-552, section 2.2.1.
 
       \vspace{\dp0}
       } \end{minipage} \\
@@ -1102,10 +1138,10 @@ yearly target values in section 2.2.
 \item
   4 ForcedSource scans --- Baseline: 4
 \item
-  0 Object-Source joins (see ``Overall Assessment'' section) ---
-  Baseline: 8~
+  0 Object-Source joins (see "Overall Assessment" section) --- Baseline:
+  8~
 \item
-  0 Object-ForcedSource joins (see ``Overall Assessment'' section) ---
+  0 Object-ForcedSource joins (see "Overall Assessment" section) ---
   Baseline: 4~
 \item
   53 NearNeighbor queries --- Baseline: 48
@@ -1124,10 +1160,10 @@ Average query times:
 \item
   ForcedSource scans 5.4 hr/query --- Baseline: under 12 hours
 \item
-  Object-Source joins (not measured; see ``Overall Assessment'' section)
+  Object-Source joins (not measured; see "Overall Assessment" section)
   --- Baseline: under 12 hours
 \item
-  Object-ForcedSource joins (not measured; see ``Overall Assessment''
+  Object-ForcedSource joins (not measured; see "Overall Assessment"
   section) --- Baseline: under 12 hours
 \item
   NearNeighbor queries 38.9 min/query --- Baseline: under 12 hours
@@ -1163,7 +1199,7 @@ appropriately scaled test catalog.
 
     Final comment:\\Heavy Load test excluded Object x (Source, ForcedSource) joins and was
 limited by maximum shared-scan load that could be accommodated by the
-current test tooling; see notes in ``Overall Assessment'' section.
+current test tooling; see notes in "Overall Assessment" section.
 
 
 
@@ -1292,10 +1328,10 @@ Average query times:\\
 \item
   ForcedSource scans 4.8 hr/query --- Baseline: under 12 hours
 \item
-  Object-Source joins (not measured; see ``Overall Assessment'' section)
+  Object-Source joins (not measured; see "Overall Assessment" section)
   ~--- Baseline: under 12 hours
 \item
-  Object-ForcedSource joins (not measured; see ``Overall Assessment''
+  Object-ForcedSource joins (not measured; see "Overall Assessment"
   section) --- Baseline: under 12 hours
 \item
   NearNeighbor queries 39 min/query --- Baseline: under 12 hours
