@@ -181,8 +181,6 @@ scans of each type, within limits of machine resource exhaustion.
     & Conditional Pass & Heavy Load test excluded Object x (Source, ForcedSource) joins and was
 limited by maximum shared-scan load that could be accommodated by the
 current test tooling; see notes in ``Overall Assessment'' section.
-~Effectively, this run ended up being a 100LV + 20HV test; similar to
-LVV-T1089 only with more LV queries.
  &
     \\\hline
 
@@ -1103,9 +1101,11 @@ yearly target values in section 2.2.
 \item
   4 ForcedSource scans --- Baseline: 4
 \item
-  0 Object-Source joins (see comment section) --- Baseline: 8~
+  0 Object-Source joins (see ``Overall Assessment'' section) ---
+  Baseline: 8~
 \item
-  0 Object-ForcedSource joins (see comment section) --- Baseline: 4~
+  0 Object-ForcedSource joins (see ``Overall Assessment'' section) ---
+  Baseline: 4~
 \item
   53 NearNeighbor queries --- Baseline: 48
 \end{itemize}
@@ -1123,11 +1123,11 @@ Average query times:
 \item
   ForcedSource scans 5.4 hr/query --- Baseline: under 12 hours
 \item
-  Object-Source joins (not measured; see comment section) --- Baseline:
-  under 12 hours
+  Object-Source joins (not measured; see ``Overall Assessment'' section)
+  --- Baseline: under 12 hours
 \item
-  Object-ForcedSource joins (not measured; see comment section) ---
-  Baseline: under 12 hours
+  Object-ForcedSource joins (not measured; see ``Overall Assessment''
+  section) --- Baseline: under 12 hours
 \item
   NearNeighbor queries 38.9 min/query --- Baseline: under 12 hours
 \end{itemize}
@@ -1163,8 +1163,6 @@ appropriately scaled test catalog.
     Final comment:\\Heavy Load test excluded Object x (Source, ForcedSource) joins and was
 limited by maximum shared-scan load that could be accommodated by the
 current test tooling; see notes in ``Overall Assessment'' section.
-~Effectively, this run ended up being a 100LV + 20HV test; similar to
-LVV-T1089 only with more LV queries.
 
 
 
@@ -1293,11 +1291,11 @@ Average query times:\\
 \item
   ForcedSource scans 4.8 hr/query --- Baseline: under 12 hours
 \item
-  Object-Source joins (not measured; see comment section) ~--- Baseline:
-  under 12 hours
+  Object-Source joins (not measured; see ``Overall Assessment'' section)
+  ~--- Baseline: under 12 hours
 \item
-  Object-ForcedSource joins (not measured; see comment section) ---
-  Baseline: under 12 hours
+  Object-ForcedSource joins (not measured; see ``Overall Assessment''
+  section) --- Baseline: under 12 hours
 \item
   NearNeighbor queries 39 min/query --- Baseline: under 12 hours
 \end{itemize}
